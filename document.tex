@@ -1,0 +1,66 @@
+\documentclass[10pt,twocolumn]{article}
+
+% use the oxycomps style file
+\usepackage{oxycomps}
+
+% read references.bib for the bibtex data
+\bibliography{references}
+
+% include metadata in the generated pdf file
+\pdfinfo{
+    /Title (Time Locked Wallet)
+    /Author (Zewei Wu)
+}
+
+% set the title and author information
+\title{Time Deposit With Smart Contract Time Locked Wallet}
+\author{Zewei Wu}
+\affiliation{Occidental College}
+\email{zwu@oxy.edu}
+
+\begin{document}
+
+\maketitle
+
+\section{Abstract}
+This is a report on the tutorial part of my Occidental College Computer Science Comprehensive Project: Time Deposit Blockchain Time Locked Wallet. This report contains method, evaluation, results and discussion and software documentations. This tutorial guides readers through the process of creating a practical wallet in DApp in the Solidity language.\cite{Radek}
+
+\section{Method}
+Following the tutorial, I first started installing Node.js and Git on my machine. Then I installed the Truffle framework in the terminal using the command provided by the tutorial. I learned that the standard Truffle project structure and directories are the following
+
+\begin{itemize}
+    \item Contracts: Holds contracts
+    \item Migrations: Contains scripts describing steps of migration
+    \item src: Includes DApp code
+    \item test: Stores all the contract tests
+\end{itemize}
+
+The project includes several contracts. With the provided code, there is the main contract, factory contract that let users deploy their wallet, an interface for standard Ethereum tokens, a small library that performs arithemetic operation, and a internal Truffle contract taht facilitates migrations.
+
+In the main contract, I will define several public variables to generate corresponding getter methods, to create the first callback function which will define the conrtact's name. Then, I created the first regular function which has no function parameters, that returns the current information of this contract.
+
+Then I went on and created several functions that can pass in the wallet address so that it can perform transactions with ERC20 tokens. In these functioned I have already defined several triggered events, that are log entries attached to the transaction receipts on the blockchain. So with just the code mentioned before, I can already time-locked ether and ERC20 tokens given the address.
+
+For security concerns, I learned that there needs to be a higher-level factory contract to separates funds in different wallets so that it will not be one contract with all the assets concentrated. Also a factory contract allows simple time locked creation. A mapping type was also needed which consists of all of the user's addresses.
+
+The most important and tactic part of the contract was the factory method, that let user to create new time-locked wallet. By calling its constructor, then I can store its address for the creator and the recipient so that transaction can be placed. With all the functions built and majority of the codes provided by the tutorial, I can then to run Truffle and compile the contracts. After running the framework successfully, I needed to define the contracts that was intended to deployed to import the two contract artifacts. After following all of the instructions above, to ensure that all the components are cooperating smoothly, I have to used the test directory and correspond to the main contracts that I defined earlier. The terminal showed the status of the tests passing with how well the contracts are running with the amount of latency.
+
+After everything is passed, I can then run this DApp on an Ethereum-enabled browser. The easiest way to do so was to install a MetaMask Chrome plugin.
+
+\section{Evaluation}
+
+To cooperate this tutorial with my COMPS proposal, the evaluation of this will be simply the accessible of the time-locked wallet. By following the tutorial, I was able to build the time-locked wallet as described. Further testing with students will be needed during my next stage of the project.
+
+\section{Discussion}
+
+For this tutorial I have learned the basics of solidity, which I should get more familiar with during the early stage of my building process of the wallet. Overall the tutorial had piqued more of my interest and made me realized that with more background knowledge building a customized time locked wallet. After following each steps that were provided by the tutorial, I got the overall picture of the structure of smart contracts. Subsequently, I am more confident in building functions in the context of smart contracts and DApps.
+
+
+
+\section{Software Documentation}
+
+See Time-locked-wallet file for the codes from this tutorial.
+
+\printbibliography
+
+\end{document}
